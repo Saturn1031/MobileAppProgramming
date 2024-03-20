@@ -15,4 +15,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "MyFirstApplication"
 include(":app")
-include(":ch6_view")
+include(":ch06_view")
+include(":ch07_layout")
