@@ -17,3 +17,4 @@ rootProject.name = "MyFirstApplication"
 include(":app")
 include(":ch06_view")
 include(":ch07_layout")
+include(":ch09_resource")
