@@ -26,6 +26,7 @@
             android:id="@+id/startButton"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
+            app:backgroundTint="@null"
             android:background="@drawable/round_button"
             android:text="Start"
             android:textColor="#FFFFFF"
