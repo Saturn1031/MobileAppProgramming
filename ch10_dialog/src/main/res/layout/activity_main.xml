@@ -1,53 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center_vertical"
+    android:id="@+id/drawer"
+    android:fitsSystemWindows="true"
     tools:context=".MainActivity">
 
-    <Button
+    <!-- 1. 본 화면 -->
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="날짜 선택"
-        android:id="@+id/btnDate" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_vertical">
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="시간 선택"
-        android:id="@+id/btnTime" />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="날짜 선택"
+            android:id="@+id/btnDate" />
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="알림창"
-        android:id="@+id/btnAlert" />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="시간 선택"
+            android:id="@+id/btnTime" />
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="알림창 - 아이템"
-        android:id="@+id/btnAlertItem" />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="알림창"
+            android:id="@+id/btnAlert" />
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="알림창 - 하나만 선택"
-        android:id="@+id/btnAlertSingle" />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="알림창 - 아이템"
+            android:id="@+id/btnAlertItem" />
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="알림창 - 다수 선택"
-        android:id="@+id/btnAlertMulti" />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="알림창 - 하나만 선택"
+            android:id="@+id/btnAlertSingle" />
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="알림창 - 사용자 지정"
-        android:id="@+id/btnAlertCustom" />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="알림창 - 다수 선택"
+            android:id="@+id/btnAlertMulti" />
 
-</LinearLayout>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="알림창 - 사용자 지정"
+            android:id="@+id/btnAlertCustom" />
+
+    </LinearLayout>
+
+    <!-- 2. 드로어 화면 -->
+    <TextView
+        android:layout_width="300dp"
+        android:layout_height="match_parent"
+        android:background="#ff0000"
+        android:layout_gravity="start"
+        android:gravity="center"
+        android:fitsSystemWindows="true"
+        android:text="I am Drawer"
+        android:textColor="#FFFF"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+    <!-- layout_gravity="start": 화면 왼쪽에 숨겨지도록 -->
+</androidx.drawerlayout.widget.DrawerLayout>
