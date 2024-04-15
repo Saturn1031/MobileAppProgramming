@@ -3,6 +3,8 @@ package com.example.ch11_jetpack
 import android.content.Context
 import android.graphics.BitmapFactory
 import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.Rect
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -55,6 +57,16 @@ class MyDecoration(val context: Context) : RecyclerView.ItemDecoration() {
         super.onDrawOver(c, parent, state)
         c.drawBitmap(BitmapFactory.decodeResource(context.resources, R.drawable.kbo), 0f, 0f, null)
     }
+
+    override fun getItemOffsets(
+        outRect: Rect,
+        view: View,
+        parent: RecyclerView,
+        state: RecyclerView.State
+    ) {
+        super.getItemOffsets(outRect, view, parent, state)
+        view.setBackgroundColor(Color.parseColor("#345678"))
+    }
 }
 
 class TwoFragment : Fragment() {
@@ -91,16 +103,16 @@ class TwoFragment : Fragment() {
         // layoutManager
         // 전체 아이템의 배치 레이아웃을 레이아웃 객체로 결정
         val linear = LinearLayoutManager(activity)
+        binding.recyclerView.layoutManager = linear
         linear.orientation = LinearLayoutManager.HORIZONTAL
 
         var grid = GridLayoutManager(activity, 2, GridLayoutManager.VERTICAL, false)
-
         binding.recyclerView.layoutManager = grid
 
         // 선택적
         binding.recyclerView.addItemDecoration(MyDecoration(activity as Context))
 
-        return inflater.inflate(R.layout.fragment_two, container, false)
+        return binding.root
     }
 
     companion object {
