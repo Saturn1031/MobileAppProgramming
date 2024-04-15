@@ -1,10 +1,18 @@
 package com.example.ch11_jetpack
 
+import android.content.Context
+import android.graphics.BitmapFactory
+import android.graphics.Canvas
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.ch11_jetpack.databinding.FragmentTwoBinding
+import com.example.ch11_jetpack.databinding.ItemRecyclerviewBinding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -16,6 +24,39 @@ private const val ARG_PARAM2 = "param2"
  * Use the [TwoFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
+
+// viewHolder 클래스 정의
+class MyViewHolder(val binding: ItemRecyclerviewBinding) : RecyclerView.ViewHolder(binding.root)
+
+// adapter 클래스 정의
+class MyRecyclerAdapter(val datas: MutableList<String>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        // 레이아웃 정의
+        return MyViewHolder(ItemRecyclerviewBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+    }
+
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        val binding = (holder as MyViewHolder).binding // holder를 MyViewHolder로 캐스팅
+        binding.itemData.text = datas[position] // 인수로 전달받은 datas의 position번째 문자열을 text에 삽입
+    }
+
+    override fun getItemCount(): Int {
+        return datas.size
+    }
+}
+
+class MyDecoration(val context: Context) : RecyclerView.ItemDecoration() {
+    override fun onDraw(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {
+        super.onDraw(c, parent, state)
+        c.drawBitmap(BitmapFactory.decodeResource(context.resources, R.drawable.kbo), 0f, 0f, null)
+    }
+
+    override fun onDrawOver(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {
+        super.onDrawOver(c, parent, state)
+        c.drawBitmap(BitmapFactory.decodeResource(context.resources, R.drawable.kbo), 0f, 0f, null)
+    }
+}
+
 class TwoFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
@@ -34,6 +75,31 @@ class TwoFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+        val binding = FragmentTwoBinding.inflate(inflater, container, false)
+
+        // 크기가 바뀔 수 있는 배열 mutableList
+        var datas = mutableListOf<String>()
+        // 문자열을 datas에 add
+        for (i in 1 .. 10) {
+            datas.add("Item $i")
+        }
+
+        // adapter & viewHolder
+        // adapter 설정, 클래스를 정의하여 대입
+        binding.recyclerView.adapter = MyRecyclerAdapter(datas)
+
+        // layoutManager
+        // 전체 아이템의 배치 레이아웃을 레이아웃 객체로 결정
+        val linear = LinearLayoutManager(activity)
+        linear.orientation = LinearLayoutManager.HORIZONTAL
+
+        var grid = GridLayoutManager(activity, 2, GridLayoutManager.VERTICAL, false)
+
+        binding.recyclerView.layoutManager = grid
+
+        // 선택적
+        binding.recyclerView.addItemDecoration(MyDecoration(activity as Context))
+
         return inflater.inflate(R.layout.fragment_two, container, false)
     }
 
