@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<!--LinearLayout: 뷰를 가로/세로 방향으로 배열하는 레이아웃-->
+<!--orientation: 배열 방향 지정 (vertical, horizontal)-->
+<!--gravity: 안의 콘텐츠들 정렬 (right|bottom, ...)-->
+<!--layout_gravity: 자신(뷰)을 정렬 (center_horizontal, ...)-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -8,6 +13,7 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
+<!--    layout_weight: 다른 뷰들을 배치 후 남는 여백을 채움 (1, 2 등 가중치)-->
     <ImageView
         android:layout_width="15dp"
         android:layout_height="15dp"
@@ -21,6 +27,10 @@
         android:text="02-120"
         android:textSize="40dp" />
 
+<!--    GridLayout: 테이블 화면을 만드는 레이아웃-->
+<!--    orientation: 나열할 방향 지정-->
+<!--    rowCount: 세로로 나열할 뷰 개수 지정-->
+<!--    columnCount: 가로로 나열할 뷰 개수 지정-->
     <GridLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -50,6 +60,7 @@
             android:textSize="30dp"
             android:textStyle="bold" />
 
+<!--        layout_column, layout_row: 그리드 레이아웃에 뷰 배치할 위치 지정 (1, 1)-->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -107,6 +118,7 @@
             android:textSize="30dp"
             android:textStyle="bold" />
 
+<!--        layout_columnSpan, layout_rowSpan: 열, 행 병합-->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -165,6 +177,8 @@
             android:textStyle="bold" />
     </GridLayout>
 
+<!--    RelativeLayout: 상대 뷰 위치를 기준으로 정렬하는 레이아웃
+    (layout_above, layout_below, layout_toLeftOf, layout_toRightOf 속성 사용)-->
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -177,6 +191,7 @@
             android:layout_marginRight="30dp"
             android:src="@drawable/video" />
 
+<!--        layout_toRightOf: 기준 뷰의 오른쪽에 배치-->
         <ImageView
             android:id="@+id/icon_call"
             android:layout_width="50dp"
@@ -192,6 +207,8 @@
             android:layout_toRightOf="@id/icon_call"
             android:src="@drawable/back" />
 
+<!--        layout_alignBottom: 기준 뷰와 아래쪽을 맞춤-->
+<!--        layout_alignParentRight: 부모의 오른쪽에 맞춤-->
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -203,3 +220,5 @@
     </RelativeLayout>
 
 </LinearLayout>
+
+<!--FrameLayout: 뷰를 위에 겹쳐서 계속 출력하는 레이아웃-->
