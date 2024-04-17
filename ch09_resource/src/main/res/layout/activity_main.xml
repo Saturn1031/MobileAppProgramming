@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:padding="20dp">
 
+<!--    이미지 리소스: res/drawable-->
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
@@ -13,6 +14,7 @@
         android:layout_centerHorizontal="true"
         android:src="@drawable/duksung_logo" />
 
+<!--    값 리소스: res/values-->
     <TextView
         android:id="@+id/mainTextView"
         android:layout_width="match_parent"
@@ -34,6 +36,15 @@
         android:layout_marginTop="20dp"
         android:gravity="center_horizontal"
         android:text="@string/intro_detail" />
+
+<!--    android에서 제공하는 플랫폼 리소스: @android:drawable 이용-->
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/detailTextView"
+        android:layout_marginTop="20dp"
+        android:src="@android:drawable/ic_menu_search" />
 
     <TextView
         android:id="@+id/delayTextView"
