@@ -261,17 +261,24 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         return false
     }
 
-    // Option Menu 생성
+    // onCreateOptionsMenu: 옵션 메뉴 생성
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+
+        // 메뉴에 res/menu/menu_nevigation.xml 적용
         menuInflater.inflate(R.menu.menu_navigation, menu)
 
+        // search view 객체를 가져옴
         val searchView = menu?.findItem(R.id.menu_search)?.actionView as SearchView // 캐스팅은 as 키워드로
+
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+
+            // 키보드의 검색 버튼을 클릭하면...
             override fun onQueryTextSubmit(query: String?): Boolean {
                 Toast.makeText(applicationContext, "$query 검색합니다.", Toast.LENGTH_SHORT).show()
                 return true
             }
 
+            // 검색어가 변경되면...
             override fun onQueryTextChange(newText: String?): Boolean {
                 return true
             }
@@ -286,6 +293,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             return true // 토글이 가진 기본 기능을 수행
         }
 
+        // 어떤 옵션이 클릭되면...
         when (item.itemId) {
             R.id.item1 -> {
                 Log.d("mobileapp", "Option menu : 메뉴 1")
