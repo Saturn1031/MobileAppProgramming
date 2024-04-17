@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<!--LinearLayout은 뷰 그룹 클래스의 하위, 뷰와 뷰 그룹들을 담는 역할-->
+<!--layout_width와 layout_height는 모든 뷰의 필수 정보-->
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -8,6 +11,11 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
+<!--    text: 출력할 문자열 지정-->
+<!--    textColor: 출력할 문자열의 색상 지정 (#FF0000)-->
+<!--    textSize: 문자열의 크기 지정 (sp)-->
+<!--    textStyle: 문자열 스타일 지정 (bold, italic, normal)-->
+<!--    autoLink: 문자열을 분석해 링크 추가 (web, phone, email)-->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -15,6 +23,9 @@
         android:textSize="34sp"
         android:textStyle="bold" />
 
+<!--    maxLines: 문자열이 특정 줄까지만 출력됨-->
+<!--    ellipsize: 문자열이 더 있으면 줄임표 표시 (end, middle, start)-->
+<!--    values/string.xml에 문자열 넣어두고 @string으로 사용-->
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
@@ -23,12 +34,16 @@
         android:ellipsize="end"
         android:text="@string/signup" />
 
+<!--    src: 출력할 이미지 설정 (이미지 파일은 drawable 폴더에 넣어두기)-->
+<!--    maxHeight, maxWidth: 이미지의 최대 크기 지정 (adjustViewBounds 속성과 함께 사용, true이면 가로세로 길이 비례)-->
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:src="@drawable/duksae_small" />
 
+<!--    글을 입력할 수 있는 뷰-->
+<!--    inputType: 올라올 키보드 지정 (phone, text, textPassword, ...)-->
     <EditText
         android:id="@+id/editTextText"
         android:layout_width="match_parent"
@@ -53,6 +68,7 @@
         android:hint="example@ds.ac.kr"
         android:inputType="textEmailAddress" />
 
+<!--    RadioButton은 반드시 RadioGroup으로 묶기 (묶인 버튼 중 하나만 선택 가능)-->
     <RadioGroup
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
@@ -91,6 +107,7 @@
         android:layout_height="wrap_content"
         android:text="동의합니다." />
 
+<!--    margin으로 간격 조정-->
     <Button
         android:id="@+id/button"
         android:layout_width="match_parent"
@@ -98,6 +115,9 @@
         android:layout_marginTop="50dp"
         android:text="회원 가입" />
 
+<!--    padding으로 간격 조정-->
+<!--    visibility로 화면에 출력 결정:
+            visible, invisible(출력x, 자리차지o), gone(출력x, 자리차지x)-->
     <Button
         android:id="@+id/button2"
         android:layout_width="match_parent"
