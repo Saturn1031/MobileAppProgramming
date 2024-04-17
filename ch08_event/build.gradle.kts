@@ -33,6 +33,8 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
+//    layout xml 파일의 뷰 객체가 자동으로 만들어짐
     viewBinding {
         enable = true
     }
