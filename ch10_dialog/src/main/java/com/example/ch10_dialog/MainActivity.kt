@@ -17,8 +17,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import com.example.ch10_dialog.databinding.ActivityMainBinding
 import com.example.ch10_dialog.databinding.DialogCustomBinding
+import com.google.android.material.navigation.NavigationView
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     lateinit var binding: ActivityMainBinding
     lateinit var toggle: ActionBarDrawerToggle
 
@@ -31,6 +32,8 @@ class MainActivity : AppCompatActivity() {
         toggle = ActionBarDrawerToggle(this, binding.drawer, R.string.drawer_opened, R.string.drawer_closed)
         supportActionBar?.setDisplayHomeAsUpEnabled(true) // 화면에 보여주기
         toggle.syncState() // 싱크
+
+        binding.mainDrawerView.setNavigationItemSelectedListener(this)
 
         binding.btnDate.setOnClickListener {
             DatePickerDialog(this, object : DatePickerDialog.OnDateSetListener {
@@ -180,6 +183,32 @@ class MainActivity : AppCompatActivity() {
             }
         }
     } // onCreate()
+
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.item1 -> {
+                Log.d("mobileapp", "Nevigation menu : 메뉴 1")
+                binding.btnDate.setTextColor(Color.parseColor("#ffff00"))
+                true
+            }
+
+            R.id.item2 -> {
+                Log.d("mobileapp", "Nevigation menu : 메뉴 2")
+                true
+            }
+
+            R.id.item3 -> {
+                Log.d("mobileapp", "Nevigation menu : 메뉴 3")
+                true
+            }
+
+            R.id.item4 -> {
+                Log.d("mobileapp", "Nevigation menu : 메뉴 4")
+                true
+            }
+        }
+        return false
+    }
 
     // Option Menu 생성
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

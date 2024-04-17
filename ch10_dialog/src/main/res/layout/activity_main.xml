@@ -61,16 +61,15 @@
     </LinearLayout>
 
     <!-- 2. 드로어 화면 -->
-    <TextView
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/mainDrawerView"
         android:layout_width="300dp"
         android:layout_height="match_parent"
-        android:background="#ff0000"
         android:layout_gravity="start"
         android:gravity="center"
         android:fitsSystemWindows="true"
-        android:text="I am Drawer"
-        android:textColor="#FFFF"
-        android:textSize="20dp"
-        android:textStyle="bold" />
+        app:headerLayout="@layout/nevigation_header"
+        app:menu="@menu/menu_navigation"
+        />
     <!-- layout_gravity="start": 화면 왼쪽에 숨겨지도록 -->
 </androidx.drawerlayout.widget.DrawerLayout>

@@ -55,7 +55,7 @@ class MyDecoration(val context: Context) : RecyclerView.ItemDecoration() {
 
     override fun onDrawOver(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {
         super.onDrawOver(c, parent, state)
-        c.drawBitmap(BitmapFactory.decodeResource(context.resources, R.drawable.kbo), 0f, 0f, null)
+        c.drawBitmap(BitmapFactory.decodeResource(context.resources, R.drawable.kbo), 500f, 500f, null)
     }
 
     override fun getItemOffsets(
@@ -98,7 +98,8 @@ class TwoFragment : Fragment() {
 
         // adapter & viewHolder
         // adapter 설정, 클래스를 정의하여 대입
-        binding.recyclerView.adapter = MyRecyclerAdapter(datas)
+        val adapter = MyRecyclerAdapter(datas)
+        binding.recyclerView.adapter = adapter
 
         // layoutManager
         // 전체 아이템의 배치 레이아웃을 레이아웃 객체로 결정
@@ -111,6 +112,14 @@ class TwoFragment : Fragment() {
 
         // 선택적
         binding.recyclerView.addItemDecoration(MyDecoration(activity as Context))
+
+        // 플로팅 액션 버튼을 누르면... 아이템을 추가 (datas에 추가)
+        binding.mainFab.setOnClickListener {
+            datas.add("Android Add")
+            
+            // adapter에게 데이터가 바뀌었음을 알려야 함
+            adapter.notifyDataSetChanged()
+        }
 
         return binding.root
     }
