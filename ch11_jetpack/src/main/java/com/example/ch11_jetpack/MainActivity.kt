@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
         // 클래스를 만들어서 프래그먼트 어댑터 설정
         binding.viewpager.adapter = MyFragmentPagerAdapter(this)
         
-        // 프래그먼트 탭과 뷰 페이저를 연결
+        // 탭과 뷰 페이저를 연결
         TabLayoutMediator(binding.tabs, binding.viewpager) {
             tab, position ->
                 tab.text = " Tab ${position + 1}" // 탭의 이름 설정
