@@ -11,6 +11,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
 
+    // 프래그먼트 어댑터
     class MyFragmentPagerAdapter(activity: FragmentActivity): FragmentStateAdapter(activity) {
         // 프래그먼트 리스트
         val fragments: List<Fragment>
@@ -37,10 +38,10 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // 클래스를 만들어서 어댑터 설정
+        // 클래스를 만들어서 프래그먼트 어댑터 설정
         binding.viewpager.adapter = MyFragmentPagerAdapter(this)
         
-        // 탭과 뷰 페이저를 연결
+        // 프래그먼트 탭과 뷰 페이저를 연결
         TabLayoutMediator(binding.tabs, binding.viewpager) {
             tab, position ->
                 tab.text = " Tab ${position + 1}" // 탭의 이름 설정

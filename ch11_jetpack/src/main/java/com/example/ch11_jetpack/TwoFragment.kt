@@ -27,19 +27,19 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 
-// viewHolder 클래스 정의
+// viewHolder 클래스 정의 (리사이클러 뷰에 필수)
 class MyViewHolder(val binding: ItemRecyclerviewBinding) : RecyclerView.ViewHolder(binding.root)
 
-// adapter 클래스 정의
+// adapter 클래스 정의 (리사이클러 뷰에 필수)
 class MyRecyclerAdapter(val datas: MutableList<String>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        // 레이아웃 정의
+        // 레이아웃 정의 (item_recyclerview.xml을 뷰홀더에 전달)
         return MyViewHolder(ItemRecyclerviewBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val binding = (holder as MyViewHolder).binding // holder를 MyViewHolder로 캐스팅
-        binding.itemData.text = datas[position] // 인수로 전달받은 datas의 position번째 문자열을 text에 삽입
+        binding.itemData.text = datas[position] // adapter 인수로 전달받은 datas의 position번째 문자열을 item text에 삽입
     }
 
     override fun getItemCount(): Int {
@@ -47,13 +47,16 @@ class MyRecyclerAdapter(val datas: MutableList<String>) : RecyclerView.Adapter<R
     }
 }
 
+// 리사이클러 뷰 항목 꾸미기
 class MyDecoration(val context: Context) : RecyclerView.ItemDecoration() {
     override fun onDraw(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {
+        // 아이템들이 배치되기 전에 호출됨
         super.onDraw(c, parent, state)
         c.drawBitmap(BitmapFactory.decodeResource(context.resources, R.drawable.kbo), 0f, 0f, null)
     }
 
     override fun onDrawOver(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {
+        // 아이템들이 배치된 후 호출됨 (위에 덧그려짐)
         super.onDrawOver(c, parent, state)
         c.drawBitmap(BitmapFactory.decodeResource(context.resources, R.drawable.kbo), 500f, 500f, null)
     }
@@ -64,6 +67,7 @@ class MyDecoration(val context: Context) : RecyclerView.ItemDecoration() {
         parent: RecyclerView,
         state: RecyclerView.State
     ) {
+        // 항목들을 꾸밀 때 호출됨
         super.getItemOffsets(outRect, view, parent, state)
         view.setBackgroundColor(Color.parseColor("#345678"))
     }
@@ -82,6 +86,7 @@ class TwoFragment : Fragment() {
         }
     }
 
+    // onCreateView: 프래그먼트 구현을 위해 반드시 작성
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -96,21 +101,22 @@ class TwoFragment : Fragment() {
             datas.add("Item $i")
         }
 
-        // adapter & viewHolder
+        // adapter & viewHolder (리사이클러 뷰에 필수)
         // adapter 설정, 클래스를 정의하여 대입
         val adapter = MyRecyclerAdapter(datas)
         binding.recyclerView.adapter = adapter
 
-        // layoutManager
-        // 전체 아이템의 배치 레이아웃을 레이아웃 객체로 결정
+        // layoutManager (리사이클러 뷰에 필수)
+        // 아이템의 배치 레이아웃을 결정 (Linear)
         val linear = LinearLayoutManager(activity)
         binding.recyclerView.layoutManager = linear
         linear.orientation = LinearLayoutManager.HORIZONTAL
 
+        // Grid 레이아웃
         var grid = GridLayoutManager(activity, 2, GridLayoutManager.VERTICAL, false)
         binding.recyclerView.layoutManager = grid
 
-        // 선택적
+        // 아이템 데코레이션 적용 (선택적)
         binding.recyclerView.addItemDecoration(MyDecoration(activity as Context))
 
         // 플로팅 액션 버튼을 누르면... 아이템을 추가 (datas에 추가)
@@ -121,7 +127,7 @@ class TwoFragment : Fragment() {
             adapter.notifyDataSetChanged()
         }
 
-        return binding.root
+        return binding.root // 반환한 뷰 객체가 출력 됨
     }
 
     companion object {

@@ -19,6 +19,7 @@ import com.example.ch10_dialog.databinding.ActivityMainBinding
 import com.example.ch10_dialog.databinding.DialogCustomBinding
 import com.google.android.material.navigation.NavigationView
 
+// NavigationView.OnNavigationItemSelectedListener 상속받기
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     lateinit var binding: ActivityMainBinding
     lateinit var toggle: ActionBarDrawerToggle
@@ -29,10 +30,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // 드로어 메뉴를 열 네비게이션 토글 만들기 (string도 선언할 것)
         toggle = ActionBarDrawerToggle(this, binding.drawer, R.string.drawer_opened, R.string.drawer_closed)
         supportActionBar?.setDisplayHomeAsUpEnabled(true) // 화면에 보여주기
         toggle.syncState() // 싱크
 
+        // 드로어 메뉴 listener로 MainActivity 설정
         binding.mainDrawerView.setNavigationItemSelectedListener(this)
 
         binding.btnDate.setOnClickListener {
@@ -235,6 +238,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
     } // onCreate()
 
+    // 드로어의 네비게이션 메뉴가 클릭되면 실행되는 함수
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.item1 -> {
@@ -289,7 +293,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     // 옵션 메뉴가 클릭되었을 때 호출되는 리스너
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (toggle.onOptionsItemSelected(item)) { // 토글이 눌렸다면...
+        if (toggle.onOptionsItemSelected(item)) { // 우측 상단 토글이 눌렸다면...
             return true // 토글이 가진 기본 기능을 수행
         }
 
