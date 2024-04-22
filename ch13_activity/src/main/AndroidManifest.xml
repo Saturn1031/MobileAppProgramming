@@ -12,7 +12,9 @@
 <!--        추가한 액티비티-->
         <activity
             android:name=".AddActivity"
+            android:parentActivityName=".MainActivity"
             android:exported="false" />
+<!--        parentActivityName: 부모 액티비티 지정, 백 버튼을 누르면 돌아갈 곳-->
 
 <!--        main 액티비티-->
         <activity
