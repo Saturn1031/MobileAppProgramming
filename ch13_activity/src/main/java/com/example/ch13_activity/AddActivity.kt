@@ -35,6 +35,10 @@ class AddActivity : AppCompatActivity() {
 
     // 업버튼 누르면 뒤로가기 수행
     override fun onSupportNavigateUp(): Boolean {
-        return super.onSupportNavigateUp()
+        val intent = intent
+        setResult(Activity.RESULT_OK, intent)
+
+        finish()
+        return true
     }
 }

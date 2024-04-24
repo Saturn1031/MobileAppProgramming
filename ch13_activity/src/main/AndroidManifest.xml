@@ -9,7 +9,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyFirstApplication">
 
-<!--        추가한 액티비티-->
+<!--        add 액티비티-->
         <activity
             android:name=".AddActivity"
             android:parentActivityName=".MainActivity"

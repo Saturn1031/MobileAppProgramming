@@ -47,8 +47,10 @@ class MainActivity : AppCompatActivity() {
             // 콜백 (AddActivity에서 데이터 받음)
             it.data!!.getStringExtra("todo")?.let { // let: null이 아니면 실행
                 // datas에 문자열 추가하고 리사이클러뷰에 변경 알림
-                datas?.add(it)
-                adapter.notifyDataSetChanged()
+                if (it != "") {
+                    datas?.add(it)
+                    adapter.notifyDataSetChanged()
+                }
             }
         }
 
