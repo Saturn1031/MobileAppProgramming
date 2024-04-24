@@ -4,7 +4,9 @@ import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.content.DialogInterface
+import android.content.Intent
 import android.graphics.Color
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
@@ -241,24 +243,36 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     // 드로어의 네비게이션 메뉴가 클릭되면 실행되는 함수
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.item1 -> {
-                Log.d("mobileapp", "Nevigation menu : 메뉴 1")
-                binding.btnDate.setTextColor(Color.parseColor("#ffff00"))
+            R.id.item_info -> {
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse("http://m.duksung.ac.kr"))
+                startActivity(intent)
                 true
             }
 
-            R.id.item2 -> {
-                Log.d("mobileapp", "Nevigation menu : 메뉴 2")
+            R.id.item_map -> {
+                // 지도에서 해당 위치 보여주기
+                // val intent = Intent(Intent.ACTION_VIEW, Uri.parse("geo:37.5662952,126.9779451"))
+                
+                // 출발지 -> 목적지 가는 길 보여주기
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.google.com/maps/dir/덕성여자대학교/안국역"))
+                startActivity(intent)
                 true
             }
 
-            R.id.item3 -> {
-                Log.d("mobileapp", "Nevigation menu : 메뉴 3")
+            R.id.item_gallery -> {
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse("content://media/internal/images/media"))
+                startActivity(intent)
                 true
             }
 
-            R.id.item4 -> {
-                Log.d("mobileapp", "Nevigation menu : 메뉴 4")
+            R.id.item_call -> {
+                val intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:010-7566-9407"))
+                startActivity(intent)
+                true
+            }
+            R.id.item_mail -> {
+                val intent = Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:rnjs021031@gmail.com"))
+                startActivity(intent)
                 true
             }
         }

@@ -71,7 +71,7 @@
         android:gravity="center"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nevigation_header"
-        app:menu="@menu/menu_navigation"
+        app:menu="@menu/menu_provider"
         />
     <!-- layout_gravity="start": 화면 왼쪽에 숨겨지도록 (start, end) -->
 <!--    headerLayout="@layout/nevigation_header: res/layout/nevigation_header.xml 연결-->
