@@ -223,20 +223,23 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
         }
 
+        // 커스텀 다이얼로그 만들기
+        val customDlg = AlertDialog.Builder(this).run() {
+            setTitle("알림 - 사용자 화면")
+            setIcon(android.R.drawable.ic_dialog_alert)
+
+            // 다이얼로그 뷰 객체 전달
+            setView(dialogBinding.root)
+
+            setPositiveButton("예", eventHandler3)
+            setNegativeButton("아니오", eventHandler3)
+
+            // 다이얼로그 만듦
+            create()
+        }
+        
         binding.btnAlertCustom.setOnClickListener {
-
-            // 커스텀 알림창 만들기
-            AlertDialog.Builder(this).run() {
-                setTitle("알림 - 사용자 화면")
-                setIcon(android.R.drawable.ic_dialog_alert)
-
-                // 다이얼로그 뷰 객체 전달
-                setView(dialogBinding.root)
-
-                setPositiveButton("예", eventHandler3)
-                setNegativeButton("아니오", eventHandler3)
-                show()
-            }
+            customDlg.show()
         }
     } // onCreate()
 
