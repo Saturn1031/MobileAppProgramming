@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--리소스로 메뉴 구현-->
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+<!--    showAsAction: 액션바에 어떻게 나타날지 지정 (always: 액션 아이템으로 출력, never(기본값): 오버플로 메뉴로 안에 숨김)-->
+<!--    actionViewClass="androidx.appcompat.widget.SearchView": SearchView 등록, 특별한 기능 제공-->
+    <item
+        android:id="@+id/menu_search"
+        android:title="search"
+        android:icon="@android:drawable/ic_menu_search"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        app:showAsAction="always"/>
+    <item
+        android:id="@+id/login"
+        android:title="로그인"
+        app:showAsAction="ifRoom"/>
+
+</menu>
