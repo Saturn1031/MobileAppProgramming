@@ -15,6 +15,7 @@
             android:layout_height="wrap_content"
             android:text="TODO"
             android:textSize="40dp"
+            android:id="@+id/tvTitle"
             android:background="#aaccdd"
             android:gravity="center_horizontal" />
         <TextView

@@ -1,8 +1,14 @@
 package com.example.ch17_storage
 
 import android.app.Activity
+import android.content.Intent
+import android.content.SharedPreferences
+import android.graphics.Color
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.preference.PreferenceManager
 import com.example.ch17_storage.databinding.ActivityAddBinding
 import java.io.File
 import java.io.OutputStreamWriter
@@ -10,12 +16,17 @@ import java.text.SimpleDateFormat
 
 class AddActivity : AppCompatActivity() {
     lateinit var binding: ActivityAddBinding
+    lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding= ActivityAddBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+        val color = sharedPreferences.getString("color", "#ffff00")
+        binding.date.setTextColor(Color.parseColor(color))
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
@@ -44,6 +55,28 @@ class AddActivity : AppCompatActivity() {
             true
         }
     } // onCreate()
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_setting, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId === R.id.menu_main_setting) {
+            val intent = Intent(this, SettingActivity::class.java)
+            startActivity(intent)
+        }
+
+        return super.onOptionsItemSelected(item)
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+        val color = sharedPreferences.getString("color", "#ffff00")
+        binding.date.setTextColor(Color.parseColor(color))
+    }
 
     override fun onSupportNavigateUp(): Boolean {
         val intent = intent

@@ -9,9 +9,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyFirstApplication">
         <activity
-            android:name=".AddActivity"
-            android:parentActivityName=".MainActivity"
+            android:name=".SettingActivity"
             android:exported="false" />
+        <activity
+            android:name=".AddActivity"
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
