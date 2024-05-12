@@ -1,5 +1,7 @@
 package com.example.ch18_joyce
 
+import com.tickaroo.tikxml.TikXml
+import com.tickaroo.tikxml.retrofit.TikXmlConverterFactory
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -16,8 +18,17 @@ class RetrofitConnection {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
 
+        val xmlNetworkService: NetworkService
+        val parser = TikXml.Builder().exceptionOnUnreadXml(false).build()
+        val xmlRetrofit: Retrofit
+            get() = Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(TikXmlConverterFactory.create(parser))
+                .build()
+
         init {
-            jsonNetworkService = jsonRetrofit.create(NetworkService::class.java)
+            jsonNetworkService = jsonRetrofit.create(NetworkService::class.java) // base url과 쿼리 연결
+            xmlNetworkService = xmlRetrofit.create(NetworkService::class.java)
         }
     }
 }

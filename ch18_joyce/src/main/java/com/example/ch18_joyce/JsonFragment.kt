@@ -1,12 +1,17 @@
 package com.example.ch18_joyce
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ch18_joyce.databinding.FragmentJsonBinding
 import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -48,6 +53,22 @@ class JsonFragment : Fragment() {
             "json",
             "n6EBRN24jG+UrUXH/sU8SlHMyu1RBlJZvoO5woqXnoa0poCpn+iLZX0D3RXUafvYhhFLUa/B/r7n3ZJSWDGuuQ=="
         )
+
+        call?.enqueue(object: Callback<JsonResponse> {
+            override fun onResponse(call: Call<JsonResponse>, response: Response<JsonResponse>) {
+                if (response.isSuccessful) {
+                    Log.d("mobileapp", "$response")
+                    Log.d("mobileapp", "${response.body()}")
+                    binding.jsonRecyclerView.adapter = JsonAdapter(response.body()?.response!!.body!!.items)
+                    binding.jsonRecyclerView.layoutManager = LinearLayoutManager(activity)
+                    binding.jsonRecyclerView.addItemDecoration(DividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL))
+                }
+            }
+
+            override fun onFailure(call: Call<JsonResponse>, t: Throwable) {
+                Log.d("mobileapp", "onFailure")
+            }
+        })
 
         return binding.root
     }

@@ -1,11 +1,17 @@
 package com.example.ch18_joyce
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ch18_joyce.databinding.FragmentXmlBinding
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -36,6 +42,33 @@ class XmlFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val binding = FragmentXmlBinding.inflate(inflater, container, false)
+
+        val year = arguments?.getString("searchYear")?: "2024"
+
+        val call: Call<XmlResponse> = RetrofitConnection.xmlNetworkService.getXmlList(
+            year.toInt(),
+            1,
+            10,
+            "xml",
+            "n6EBRN24jG+UrUXH/sU8SlHMyu1RBlJZvoO5woqXnoa0poCpn+iLZX0D3RXUafvYhhFLUa/B/r7n3ZJSWDGuuQ=="
+        )
+
+        call?.enqueue(object: Callback<XmlResponse> {
+            override fun onResponse(call: Call<XmlResponse>, response: Response<XmlResponse>) {
+                if (response.isSuccessful) {
+                    Log.d("mobileapp", "$response")
+                    Log.d("mobileapp", "${response.body()}")
+                    binding.xmlRecyclerView.adapter = XmlAdapter(response.body()!!.body!!.items!!.item)
+                    binding.xmlRecyclerView.layoutManager = LinearLayoutManager(activity)
+                    binding.xmlRecyclerView.addItemDecoration(DividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL))
+                }
+            }
+
+            override fun onFailure(call: Call<XmlResponse>, t: Throwable) {
+                Log.d("mobileapp", "onFailure ${call.request()}")
+            }
+        })
+
         return binding.root
     }
 
