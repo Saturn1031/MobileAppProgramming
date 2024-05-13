@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1073219168887",
+    "project_id": "mobileapp-d914a",
+    "storage_bucket": "mobileapp-d914a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1073219168887:android:27ceccc9495cd92bbbb472",
+        "android_client_info": {
+          "package_name": "com.example.ch18_image"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCuZ-XX83uDsplI2bTe1DdUDe6ufdKOGX4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
