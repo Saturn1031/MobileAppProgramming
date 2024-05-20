@@ -69,4 +69,6 @@ dependencies {
     implementation("androidx.multidex:multidex:2.0.1")
 
     implementation("com.google.android.gms:play-services-auth:21.1.1")
+
+    implementation("com.google.firebase:firebase-firestore-ktx:25.0.0")
 }
