@@ -60,7 +60,7 @@ dependencies {
     implementation("androidx.legacy:legacy-support-v4:1.0.0")
     kapt ("com.tickaroo.tikxml:processor:0.8.13")
 
-    implementation("com.github.bumptech.glide:glide:4.12.0")
+    implementation("com.github.bumptech.glide:glide:4.16.0")
 
     implementation(platform("com.google.firebase:firebase-bom:33.0.0"))
 
@@ -71,4 +71,6 @@ dependencies {
     implementation("com.google.android.gms:play-services-auth:21.1.1")
 
     implementation("com.google.firebase:firebase-firestore-ktx:25.0.0")
+
+    implementation("com.google.firebase:firebase-storage-ktx:21.0.0")
 }
