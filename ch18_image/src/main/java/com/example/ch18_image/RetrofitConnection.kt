@@ -11,8 +11,8 @@ class RetrofitConnection{
     //객체를 하나만 생성하는 싱글턴 패턴을 적용합니다.
     companion object {
         //API 서버의 주소가 BASE_URL이 됩니다.
-        // http://localhost/PHP_connection.php : 172.20.2.53 (ipconfig)
-        private const val BASE_URL_php = "http://172.20.2.53/"
+        // http://localhost/PHP_connection.php : 172.20.0.186 (ipconfig)
+        private const val BASE_URL_php = "http://172.20.0.186/"
         val phpNetworkService : NetworkService
         val phpRetrofit : Retrofit
             get() = Retrofit.Builder()

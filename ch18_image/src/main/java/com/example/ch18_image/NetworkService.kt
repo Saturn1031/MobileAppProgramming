@@ -9,7 +9,9 @@ import retrofit2.http.Query
 interface NetworkService {
     // http://localhost/PHP_connection.php
     @GET("PHP_connection.php")
-    fun getPhpList(): Call<PhpResponse>
+    fun getPhpList(
+        @Query("age") age:String
+    ): Call<PhpResponse>
 
     @GET("getCertImgListServiceV3")
     fun getXmlList(

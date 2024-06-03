@@ -1,10 +1,11 @@
-package com.example.joyce_18image
+package com.example.ch18_image
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import com.example.ch18_image.HinfoData
 import com.example.ch18_image.databinding.ItemHinfoBinding
 
 class PhpViewHolder(val binding: ItemHinfoBinding) : RecyclerView.ViewHolder(binding.root)
@@ -26,6 +27,25 @@ class PhpAdapter (val context: Context, val itemList: ArrayList<HinfoData>): Rec
 		    tvName.text = data.name
             tvAge.text = data.Age.toString()
             tvAddr.text = data.addr
+
+            root.setOnClickListener {
+                Toast.makeText(context, "root", Toast.LENGTH_SHORT).show()
+                Intent(context, HumanActivity::class.java).apply {
+                    putExtra("name", tvName.text)
+                    putExtra("age", tvAge.text)
+                    putExtra("addr", tvAddr.text)
+                }.run {
+                    context.startActivity(this)
+                }
+            }
+
+            tvName.setOnClickListener {
+                Toast.makeText(context, "name", Toast.LENGTH_SHORT).show()
+            }
+
+            imageView.setOnClickListener {
+                Toast.makeText(context, "image", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 }

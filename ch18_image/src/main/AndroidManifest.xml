@@ -15,6 +15,9 @@
         android:theme="@style/Theme.MyFirstApplication"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".HumanActivity"
+            android:exported="false" />
+        <activity
             android:name=".PhpActivity"
             android:exported="false" />
         <activity

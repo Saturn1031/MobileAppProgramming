@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/notificationButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="알림 발생" />
+
+<!--    app:videoId="WHrANzPs9ww"-->
+    <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+        android:id="@+id/youtube_player_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        app:autoPlay="false" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/btnTranslate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="이동" />
+
+        <Button
+            android:id="@+id/btnScale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="스케일" />
+
+        <Button
+            android:id="@+id/btnRotate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="회전" />
+
+        <Button
+            android:id="@+id/btnAlpha"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="투명도" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnWave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="웨이브" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/rocketImage" />
+
+</LinearLayout>

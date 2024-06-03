@@ -101,6 +101,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     // Drawer 메뉴
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
+            R.id.item_php -> {
+                Log.d("mobileapp", "php 메뉴")
+                val intent = Intent(this, PhpActivity::class.java)
+                startActivity(intent)
+            }
 
             R.id.item_board -> {
                 Log.d("mobileapp", "게시판 메뉴")
