@@ -10,6 +10,7 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven { url = java.net.URI("https://jitpack.io") }
     }
 }
 
@@ -28,5 +29,5 @@ include(":ch18_joyce")
 include(":ch18_image")
 include(":ch18_image")
 include(":ch18_image:ch10_push")
-include(":ch10_push")
 include(":ch10_notification")
+include(":graphapplication")
